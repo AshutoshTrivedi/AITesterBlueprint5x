@@ -1,0 +1,57 @@
+Test Case ID,Title,Description,Preconditions,Test Data,Test Steps,Expected Result,Priority
+TC-01,Successful Login with Valid Credentials,Verify that a user can log in successfully using a valid email address and password.,User account exists and is active; login page is accessible via app.vwo.com; HTTPS is active.,Valid email: user@example.com; valid password: ValidPassword@123,"1. Open the VWO login page.
+2. Enter the valid email address.
+3. Enter the valid password.
+4. Click the login button.
+5. Wait for authentication response.",User is authenticated. The system transitions to the main dashboard or next authenticated state. No invalid credential error is shown. Loading indicator clears after success.,P0
+TC-02,Login Fails with Invalid Password,Verify that an incorrect password is rejected with a clear error message.,User exists but password is incorrect; login page is open.,Valid email: user@example.com; invalid password: WrongPassword@123,"1. Open the VWO login page.
+2. Enter the valid email.
+3. Enter an incorrect password.
+4. Click the login button.",Authentication fails. User stays on the login page or error state. Clear actionable error message shown. No sensitive details are exposed.,P0
+TC-03,Email Format Validation,Validate that invalid email format is rejected using field validation.,Login page is open.,Invalid email: user@ or user.example.com,"1. Open the login page.
+2. Enter invalid email format.
+3. Trigger blur validation.
+4. Enter a valid password.
+5. Click login.",Email validation error is visible. User cannot proceed with invalid email data. Error message is clear and actionable.,P0
+TC-04,Empty Fields Submission,Verify that empty email and password values are prevented from submission.,Login page is open.,Email empty; password empty,"1. Open the login page.
+2. Leave email blank.
+3. Leave password blank.
+4. Click login button.",Submission is blocked. Validation errors shown for missing required fields. User is not authenticated.,P0
+TC-05,Forgot Password with Valid Email,Verify the password reset workflow for a valid registered email address.,User is on login page; valid account email is known.,Valid email: user@example.com,"1. Open login page.
+2. Click Forgot Password.
+3. Enter valid email.
+4. Submit request.",Reset request is accepted. Recovery initiation works. User sees correct confirmation or next-step message. No sensitive account data is displayed.,P0
+TC-06,Forgot Password with Invalid Email,Verify invalid or unregistered email is handled safely during reset flow.,User is on Forgot Password page.,Invalid email: invalid@example.com or malformed email,"1. Open login page.
+2. Click Forgot Password.
+3. Enter invalid or unregistered email.
+4. Submit request.",Request is rejected appropriately. User sees clear message. No sensitive account information is revealed.,P1
+TC-07,Remember Me Session Persistence,Verify the Remember Me option persists the session.,User has valid credentials; login page is open.,Valid email and password; Remember Me enabled,"1. Open login page.
+2. Enter valid credentials.
+3. Select Remember Me.
+4. Log in.
+5. Close and reopen session context.",Session remains available as configured. User can access authenticated area without re-entering credentials. Secure session handling is maintained.,P1
+TC-08,Session Timeout Handling,Verify expired or timed-out session triggers sign-out or reauthentication.,User is authenticated; session timeout is configured.,Authenticated session; timeout period configured by the system,"1. Log in successfully.
+2. Wait for timeout period.
+3. Attempt to access authenticated page.",User is logged out or reauthentication is required. Session expiry is clearly communicated. No unauthorized access is granted.,P0
+TC-09,Brute Force / Rate Limiting Protection,Verify repeated failed login attempts are controlled by rate limiting or protection measures.,Login page is open; user account exists.,Valid email: user@example.com; repeated invalid passwords,"1. Open login page.
+2. Enter valid email.
+3. Submit incorrect password repeatedly.
+4. Continue until multiple attempts are triggered.",System enforces rate limiting or lockout behavior. User sees clear warning. Brute-force access attempts are blocked.,P0
+TC-10,Accessibility and Keyboard Navigation,Verify login page supports keyboard navigation and screen-reader-friendly interaction.,Login page is loaded; keyboard navigation or accessibility tools are available.,Valid user details if login flow is continued after navigation checks,"1. Open login page.
+2. Use Tab key to move through form fields and controls.
+3. Trigger actions using Enter.
+4. Inspect labels and focus order.",All interactive elements are reachable via keyboard. Focus order is logical and visible. Labels and controls are usable with assistive technologies.,P0
+TC-11,Responsive Mobile Layout Validation,Verify the login flow works on mobile devices and smaller screens.,Browser dev tools or mobile device is available.,Standard valid user credentials,"1. Open login page on mobile viewport or device.
+2. Confirm inputs and buttons remain visible and aligned.
+3. Attempt login with valid credentials.
+4. Check touch usability.",Page is responsive and usable on mobile devices. Inputs remain readable and touch-friendly. Login flow works with no layout issues.,P0
+TC-12,Login Page Load Performance,Verify the login page loads within the PRD performance target on standard connections.,Network conditions for performance validation are available.,Standard connection profile,"1. Open login page in browser.
+2. Measure page load time.
+3. Repeat under normal conditions.",Page loads within 2 seconds on standard connections. Interface appears without significant delay. Page remains responsive.,P0
+TC-13,Optional 2FA Support Validation,Verify optional 2FA works correctly when enabled.,User account is configured for 2FA; secure environment is available.,Valid login credentials and second-factor challenge,"1. Open login page.
+2. Enter valid email and password.
+3. Trigger 2FA flow.
+4. Complete secondary authentication.",User is authenticated only after successful 2FA verification. Errors are clear and secure. Enhanced security requirements are satisfied.,P1
+TC-14,SSO Login Readiness Validation,Verify enterprise SSO flows are accessible and consistent when configured.,SSO configuration is available in the environment.,Enterprise user account and SSO provider configuration,"1. Open the enterprise login path.
+2. Initiate login via SSO or identity provider.
+3. Complete the enterprise-auth flow.",User can log in through supported SSO. No broken redirect or authentication failure occurs. Enterprise login requirements are satisfied.,P1

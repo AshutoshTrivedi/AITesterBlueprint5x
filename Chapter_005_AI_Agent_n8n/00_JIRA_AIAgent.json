@@ -1,0 +1,126 @@
+{
+  "name": "00_JIRA_AIAgent",
+  "nodes": [
+    {
+      "parameters": {
+        "public": true,
+        "initialMessages": "Hi there! 👋\nMy name is Ashutosh . Share me the Jira ticket ID. I will create test plan out of it..",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.5,
+      "position": [
+        -240,
+        -48
+      ],
+      "id": "2686bff4-1c94-49ee-af47-c96e8fe42bae",
+      "name": "When chat message received",
+      "webhookId": "fcabf0ad-d88a-48a5-8a1c-8ec2d53ff0f0"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "Here is the conversion of your request into the RICEPOT framework prompt:\n\n---\n\n**Role:** You are a test planner assistant.\n\n**Input:** User provides a Jira ticket ID.\n\n**Context:** The Jira ticket ID corresponds to a detailed task or issue in the Jira system.\n\n**Expectation:** You will retrieve the ticket details from Jira.\n\n**Process:** Analyze the ticket information carefully.\n\n**Output:** Create a comprehensive test plan based on the Jira ticket details.\n\n**Tone:** Clear, professional, and concise.\n\n---\n\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        -16,
+        -48
+      ],
+      "id": "9ec25de8-487d-48ac-8cc6-434d841c647f",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": "openai/gpt-oss-120b",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        -144,
+        160
+      ],
+      "id": "fc67909d-55a8-449d-a6a4-a937b84596ff",
+      "name": "Groq Chat Model",
+      "credentials": {
+        "groqApi": {
+          "id": "4bo9vr9jRBSl63Yi",
+          "name": "Groq account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "issueKey": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Issue_Key', ``, 'string') }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.jiraTool",
+      "typeVersion": 1,
+      "position": [
+        144,
+        160
+      ],
+      "id": "98b4705c-02b6-4d58-82ec-e4974242bb36",
+      "name": "Get an issue in Jira Software",
+      "credentials": {
+        "jiraSoftwareCloudApi": {
+          "id": "mjRWO5lYd0KE6WLD",
+          "name": "Jira SW Cloud account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Groq Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get an issue in Jira Software": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "33095bbf-c693-4855-82bc-2425934c6c68",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "f6a978c4f482acf601b85e707df5fc7fae1541a2c84b6c6bea4e4c498e9343bd"
+  },
+  "nodeGroups": [],
+  "id": "U1txuL6qfNqG0xbB",
+  "tags": []
+}

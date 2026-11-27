@@ -1,0 +1,21 @@
+# Secrets and local environment
+.env
+.env.*
+!.env.example
+
+# Java / Maven and Allure output
+**/target/
+**/allure-results/
+**/allure-report/
+**/.allure/
+
+# Node.js
+**/node_modules/
+**/dist/
+**/coverage/
+npm-debug.log*
+
+# Editor and operating-system files
+.DS_Store
+Thumbs.db
+.idea/

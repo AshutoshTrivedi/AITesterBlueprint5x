@@ -1,0 +1,45 @@
+:root { font-family: Inter, "Segoe UI", Arial, sans-serif; color: #172033; background: #eef2f7; }
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 320px; }
+.shell { max-width: 1180px; margin: 18px auto; background: #fff; border: 1px solid #d8deea; border-radius: 16px; padding: 16px; min-height: calc(100vh - 36px); box-shadow: 0 12px 34px rgba(31, 42, 68, .08); }
+nav { display: flex; justify-content: space-between; border-bottom: 1px solid #ddd; margin-bottom: 18px; }
+nav button { border: 0; background: transparent; padding: 10px 18px; font-size: 18px; cursor: pointer; }
+nav button.active { border-bottom: 3px solid #2563eb; color: #1d4ed8; font-weight: 700; }
+.main-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 18px; }
+.settings-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; max-width: 760px; margin: 0 auto; }
+.card, .prompt-card { border: 1px solid #d8deea; border-radius: 12px; padding: 18px; background: #fff; }
+.reply-card { min-height: 520px; }
+.prompt-card { height: fit-content; display: flex; flex-direction: column; gap: 12px; position: sticky; top: 18px; }
+h2 { margin-top: 0; text-align: center; }
+label { display: flex; flex-direction: column; gap: 7px; font-weight: 700; margin: 10px 0; }
+input { border: 1px solid #aeb7c6; border-radius: 8px; padding: 11px; width: 100%; outline: none; }
+input:focus { border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37, 99, 235, .12); }
+button { border: 1px solid #b3bccb; border-radius: 8px; background: #fff; padding: 10px 12px; cursor: pointer; }
+.prompt-card button { background: #2563eb; color: #fff; border-color: #2563eb; font-weight: 700; }
+button:disabled { opacity: .6; cursor: wait; }
+.empty { border: 2px solid #111; border-radius: 10px; min-height: 360px; display: grid; place-items: center; color: #666; text-align: center; }
+.state { text-align: center; }
+.error { color: #b00020; }
+.reply-card { max-height: calc(100vh - 150px); overflow: auto; background: #fbfcfe; }
+.plan-document { color: #263248; font-size: 14px; line-height: 1.62; }
+.plan-document h1 { font-size: 23px; margin: 2px 0 14px; padding: 14px 16px; border-radius: 8px; background: #edf4ff; border-left: 4px solid #2563eb; text-align: left; }
+.plan-document h2 { font-size: 17px; margin: 0; text-align: left; color: #1d3557; }
+.plan-section { margin: 16px 0; border: 1px solid #dde4ef; border-radius: 12px; overflow: hidden; background: #fff; box-shadow: 0 3px 12px rgba(38, 50, 72, .05); }
+.plan-section-header { display: flex; align-items: center; gap: 12px; min-height: 58px; padding: 12px 16px; background: linear-gradient(135deg, #edf4ff, #f8fafc); border-bottom: 1px solid #dde4ef; }
+.section-number { display: grid; place-items: center; width: 34px; height: 34px; flex: 0 0 34px; border-radius: 50%; background: #2563eb; color: #fff; font-family: Georgia, "Times New Roman", serif; font-size: 17px; font-weight: 800; }
+.plan-section-body { padding: 14px 16px 16px; }
+.plan-section-body > p { margin: 7px 0; }
+.plan-section-body .section-list { margin: 8px 0 4px; padding: 10px 12px 10px 34px; border-left: 3px solid #93b4ee; background: #f8fafc; border-radius: 8px; }
+.plan-section-body .section-list li { margin: 7px 0; padding-left: 2px; }
+.plan-document p { margin: 8px 0; }
+.plan-document blockquote { margin: 12px 0; padding: 10px 12px; border-left: 4px solid #2563eb; background: #eff6ff; border-radius: 6px; }
+.plan-document ul, .plan-document ol { margin: 8px 0 14px; padding-left: 22px; }
+.plan-document li { margin: 5px 0; }
+.plan-document hr { border: 0; border-top: 1px solid #d9dee7; margin: 20px 0; }
+.table-wrap { overflow-x: auto; margin: 10px 0 14px; border: 1px solid #d9dee7; border-radius: 8px; }
+.plan-document table { width: 100%; border-collapse: collapse; min-width: 620px; }
+.plan-document th, .plan-document td { border-bottom: 1px solid #d9dee7; padding: 9px 10px; text-align: left; vertical-align: top; }
+.plan-document th { background: #f5f7fa; font-size: 12px; text-transform: uppercase; letter-spacing: .04em; }
+.plan-document tbody tr:last-child td { border-bottom: 0; }
+.settings-grid .card { min-height: 290px; }
+@media (max-width: 760px) { .main-grid, .settings-grid { grid-template-columns: 1fr; } .shell { margin: 0; border-radius: 0; } }
